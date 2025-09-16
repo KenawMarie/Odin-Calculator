@@ -19,7 +19,7 @@ body{
     width: 40%;
     margin: 1em auto;
     padding: 0.3em;
-    background-color: skyblue;
+    background-color: Turquoise;
     
 }
 .firstRow{
@@ -41,7 +41,4 @@ button{
     cursor: pointer;
     color: skyblue;
     background-color: #000;
-}
-.calculator{
-    font-size: 2em;
 }
