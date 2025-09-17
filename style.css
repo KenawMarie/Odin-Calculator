@@ -23,7 +23,7 @@ body{
     background-color: Turquoise;
     
 }
-.firstRow{
+.row{
     display: flex;
     justify-content: space-evenly;
     margin:0.5em;
@@ -32,7 +32,7 @@ body{
 .display{
     height: 100px;
     background-color: #808080;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #fff;
     margin-top: 1.5em;
     display: flex;
@@ -49,3 +49,4 @@ button{
     color: skyblue;
     background-color: #222;
 }
+
