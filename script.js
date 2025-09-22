@@ -5,8 +5,11 @@ const equal=document.querySelector('.equal-to')
 const clear=document.querySelector('.erase')
 const bracket=document.querySelector('.bracket');
 const operators=document.querySelectorAll('.operator')
-const dot=document.querySelector('.dot')
-            //functions
+const plusMinus=document.querySelector('.plus-minus')
+
+//functions
+
+//let operator=['+','−','×','÷']
 function add(a,b){
   return a + b
 }
@@ -19,6 +22,7 @@ function multiply(a,b){
 function divide(a,b){
   return a / b
 }
+
 function operate(operator,numOne,numTwo){
     if(operator==='+'){
      return   add(numOne,numTwo)
@@ -33,73 +37,45 @@ function operate(operator,numOne,numTwo){
      return   divide(numOne,numTwo)
     }
 }
-let operator=['+','−','×','÷']
             // event listener
             
 clear.addEventListener('click',()=>{
   display.textContent=''
+  content=""
 })
 let count=0
 bracket.addEventListener('click',(e)=>{
+  display.textContent +=e.target.textContent[count%2]
   count++;
-  if(count%2!==0){
-    display.textContent +=e.target.textContent[0]
-    console.log(count);
-}
-else{
-  display.textContent +=e.target.textContent[1]
-
-  console.log(count);
-}
 })
 
+let counts=0
+let toggle=['','-']
+plusMinus.addEventListener('click',()=>{
+  display.textContent +=toggle[counts%2]
+  counts++;
+})
+
+let content=""
 for(const btn of btns){
     btn.addEventListener('click',(e)=>{
-      let arr=[]
-        display.textContent += e.target.textContent;
-          arr.push(display.textContent);
-          let trimmed=arr.join().trim()
-          operator
-          if(trimmed.includes('+')){
-              let number=trimmed.split('+');
-              let number1=Number(number[0])
-              let number2=Number(number[1])
-              equal.addEventListener('click',()=>{
-                let result=  operate('+',number1,number2)
-                display.textContent=result
-                console.log(result);
-              })
-            }
-          else if(trimmed.includes('−')){
-                let number=trimmed.split('−');
-              let number1=Number(number[0])
-              let number2=Number(number[1])
-              equal.addEventListener('click',()=>{
-                let result=  operate('−',number1,number2)
-                display.textContent=result
-                console.log(result);
-              })
-            }
-          else if(trimmed.includes('×')){
-            let number=trimmed.split('×');
-              let number1=Number(number[0])
-              let number2=Number(number[1])
-              equal.addEventListener('click',()=>{
-                let result=  operate('×',number1,number2)
-                display.textContent=result
-                console.log(result);
-              })
-            }
-          else if(trimmed.includes('÷')){
-            let number=trimmed.split('÷');
-              let number1=Number(number[0])
-              let number2=Number(number[1])
-              equal.addEventListener('click',()=>{
-                let result=  operate('÷',number1,number2)
-                display.textContent=result
-                console.log(result);
-              })
-            }
-          
+      content += e.target.textContent;
+      display.textContent =content;
+      splitted=content.split(/([+−×÷])/).filter(Boolean);
+      console.log(splitted);
+      let numOne=+splitted[0];
+      let operator= splitted[1];
+      let numTwo=+splitted[2];
+     
+      if(splitted.length===4){
+        let result=operate(operator,numOne,numTwo);
+        display.textContent=result
+      }
+      equal.addEventListener('click',(e)=>{
+        let result=operate(operator,numOne,numTwo);
+        display.textContent = result
+        console.log(result);
+        
+      })
     })
 }
