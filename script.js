@@ -34,26 +34,16 @@ function operate(operator,numOne,numTwo){
      return   multiply(numOne,numTwo)
     }
     else if(operator==='÷'){
+      
      return   divide(numOne,numTwo)
     }
 }
+display.textContent=0
             // event listener
             
 clear.addEventListener('click',()=>{
-  display.textContent=''
+  display.textContent=0
   content=""
-})
-let count=0
-bracket.addEventListener('click',(e)=>{
-  display.textContent +=e.target.textContent[count%2]
-  count++;
-})
-
-let counts=0
-let toggle=['','-']
-plusMinus.addEventListener('click',()=>{
-  display.textContent +=toggle[counts%2]
-  counts++;
 })
 
 let content=""
@@ -62,20 +52,37 @@ for(const btn of btns){
       content += e.target.textContent;
       display.textContent =content;
       splitted=content.split(/([+−×÷])/).filter(Boolean);
-      console.log(splitted);
       let numOne=+splitted[0];
       let operator= splitted[1];
       let numTwo=+splitted[2];
-     
+     if(numTwo===0){
+        display.textContent='ERROR'
+      }
+      if(numTwo){
+        display.textContent=numTwo
+      }
+      
       if(splitted.length===4){
         let result=operate(operator,numOne,numTwo);
-        display.textContent=result
+        display.textContent=result;
+        console.log( result)
+        content=result;
+        console.log( content)
       }
+      
       equal.addEventListener('click',(e)=>{
         let result=operate(operator,numOne,numTwo);
         display.textContent = result
-        console.log(result);
         
       })
+      for(const operator of operators){
+        operator.addEventListener('click',(e)=>{
+          e.target.style.backgroundColor='#fff';
+          e.target.style.color='#000';
+          
+        })
+        operator.style.backgroundColor='#222';
+        operator.style.color='#87ceeb';
+      }
     })
 }
