@@ -2,14 +2,10 @@
 const display=document.querySelector('.display')
 const btns=document.querySelectorAll('.digit,.operator')
 const equal=document.querySelector('.equal-to')
-const clear=document.querySelector('.erase')
-const bracket=document.querySelector('.bracket');
 const operators=document.querySelectorAll('.operator')
-const plusMinus=document.querySelector('.plus-minus')
 
 //functions
 
-//let operator=['+','−','×','÷']
 function add(a,b){
   return a + b
 }
@@ -39,50 +35,60 @@ function operate(operator,numOne,numTwo){
     }
 }
 display.textContent=0
-            // event listener
-            
-clear.addEventListener('click',()=>{
-  display.textContent=0
-  content=""
-})
 
-let content=""
+// event listener
+
+let content="";
 for(const btn of btns){
-    btn.addEventListener('click',(e)=>{
-      content += e.target.textContent;
-      display.textContent =content;
-      splitted=content.split(/([+−×÷])/).filter(Boolean);
-      let numOne=+splitted[0];
-      let operator= splitted[1];
-      let numTwo=+splitted[2];
-     if(numTwo===0){
-        display.textContent='ERROR'
-      }
-      if(numTwo){
-        display.textContent=numTwo
-      }
-      
-      if(splitted.length===4){
-        let result=operate(operator,numOne,numTwo);
-        display.textContent=result;
-        console.log( result)
-        content=result;
-        console.log( content)
-      }
-      
-      equal.addEventListener('click',(e)=>{
-        let result=operate(operator,numOne,numTwo);
-        display.textContent = result
-        
+  btn.addEventListener('click',(e)=>{
+    content += e.target.textContent;
+    display.textContent=content.split(/([+−×÷])/)[0];
+    for(const operator of operators){
+      operator.addEventListener('click',(e)=>{
+        e.target.style.backgroundColor='#fff'; 
       })
-      for(const operator of operators){
-        operator.addEventListener('click',(e)=>{
-          e.target.style.backgroundColor='#fff';
-          e.target.style.color='#000';
-          
+      operator.style.backgroundColor='#222'
+    }
+    let splitted=content.split(/([+−×÷])/g).filter((e)=>e!='');
+    if(splitted.length>2){
+        let spliced=splitted.splice(0,3);
+        let numberOne=+spliced[0];
+        let operatorOne= spliced[1]
+        let numberTwo=+spliced[2];
+        for(const operator of operators){
+          operator.addEventListener('click',(e)=>{
+            let result=operate(operatorOne,numberOne,numberTwo);
+            display.textContent=result;
+            e.target.style.backgroundColor='#fff';
+          })
+          operator.style.backgroundColor='#222'
+        }
+      let result=operate(operatorOne,numberOne,numberTwo);
+      equal.addEventListener('click',()=>{
+        result=operate(operatorOne,numberOne,numberTwo);
+        display.textContent = result;
+      })
+      let filtered=splitted.filter((e)=>e !='');
+      while(filtered.length>1){
+        let numOne=result;
+        let operatorTwo= filtered.shift();
+        let numTwo=+filtered.shift();
+        result =operate(operatorTwo,numOne,numTwo);
+        for(const operator of operators){
+          operator.addEventListener('click',(e)=>{
+            result =operate(operatorTwo,numOne,numTwo);
+            display.textContent= result;
+            e.target.style.backgroundColor='#fff';
+          })
+
+        }
+        display.textContent=numTwo;
+        equal.addEventListener('click',(e)=>{
+          result=operate(operatorTwo,numOne,numTwo);
+          display.textContent = result;
         })
-        operator.style.backgroundColor='#222';
-        operator.style.color='#87ceeb';
       }
-    })
+    }
+ 
+  })
 }
