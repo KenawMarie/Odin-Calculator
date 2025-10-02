@@ -8,44 +8,96 @@
 }
 body{
     font-family: 'Open Sans',sans-serif;
-    background-color: #696969;
+    background-color: #f5f5f5;
 }
 .container{
-    background-color: aqua;
-    width: 80%;
-    margin: auto;
+    background-color: #333300;
+    width: 43%;
+    margin: 0.6em auto;
+    padding-top: 1em;
+    border-radius: 1em
 }
 .operations{
-    width: 40%;
+    width: 90%;
     margin: 1em auto;
     padding: 0.3em;
-    background-color: Turquoise;
-    
+    border-top: 4px solid #DAA520;
 }
 .row{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin:0.3em;
     
 }
 .display{
-    height: 100px;
+    height: 80px;
+    width:90%;
     background-color: #808080;
     font-size: 2.5em;
-    color: #fff;
-    margin-top: 0.6em;
+    color: #f5f5f5;
+    margin:0.4em auto; 
     display: flex;
     justify-content: flex-end;
-    align-items: end;
-
+    align-items: flex-end;
+    border-radius: 0.4em ; 
 }
 button{
-    width: 5rem;
-    height: 5rem;
+    width: 7rem;
+    height: 4rem;
     font-size: 2em;
-    border-radius: 50%;
+    border-radius: 0.4em;
     cursor: pointer;
-    color: #87ceeb;
-    background-color: #222;
+    color: #f5f5f5;
+    background-color:#4D4D00 ;
+    margin: 0.1em;
+    border: 3px solid #4D4D00;
 }
-
+.digit:hover{
+    color: #f5f5f5;
+    background-color:#999933;
+    border: 3px solid #999933;
+}
+.operator:hover{
+    background-color: #CCCC99;
+    color: #333;
+    border: 3px solid #CCCC99;
+}
+.operator{
+    background-color: #808000;
+    border: 3px solid #808000;
+}
+.equal-to{
+    background-color: #1A1A00;
+    border: 3px solid #1A1A00;
+}
+.equal-to:hover{
+    background-color: #666600;
+    border: 3px solid #666600;
+}
+.dot:hover{
+    background-color: #4D4D00;
+    border: 3px solid #4D4D00;
+}
+.dot{
+    background-color: #555;
+    border: 3px solid #555;
+}
+.erase:hover{
+    background-color: #B22222;
+    border: 3px solid #B22222;
+}
+.clearEntry:hover{
+    background-color: #FFD6D6;
+    color:#888;
+    border: 3px solid #FFD6D6;
+}
+img{
+    height:40px;
+    width:40px;
+}
+#main-footer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.7rem;
+}
