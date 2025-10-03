@@ -4,6 +4,8 @@ const btns=document.querySelectorAll('.digit,.operator')
 const equal=document.querySelector('.equal-to')
 const operators=document.querySelectorAll('.operator');
 const clear=document.querySelector('.erase');
+const dot=document.querySelector('.dot');
+const clearEntry=document.querySelector('.clear-entry')
 
 //functions
 
@@ -42,21 +44,27 @@ function operate(operator,numOne,numTwo){
     }
   }
 
-
   function calculate(e){
-      display.textContent='';
       content += e.target.textContent;
       display.textContent=content.split(/([+−×÷^])/)[0];
+      if(content.includes('.')){
+        dot.disabled=true;
+      }
       for(const operator of operators){
         operator.addEventListener('click',(e)=>{
-          e.target.style.backgroundColor='#fff'; 
+          e.target.style.backgroundColor='#CCCC99'; 
+          e.target.style.border='3px solid #CCCC99'; 
+          e.target.style.color='#111'; 
           display.textContent=content.split(/([+−×÷^])/)[0];
         })
-        operator.style.backgroundColor='#222'
+        operator.style.border='3px solid #808000'; 
+        operator.style.backgroundColor='#808000';
+        operator.style.color='#f5f5f5';
       }
       clear.addEventListener('click',()=>{
         content='';
-        display.textContent=content;
+        display.textContent=0;
+        dot.disabled=false;
       })
       let splitted=content.split(/([+−×÷^])/g).filter((e)=>e!='');
       if(splitted.length>2){
@@ -74,9 +82,7 @@ function operate(operator,numOne,numTwo){
             else{
               display.textContent=result;
             }
-            e.target.style.backgroundColor='#fff';
           })
-          operator.style.backgroundColor='#222'
         }
         display.textContent=numberTwo;
         let result=operate(operatorOne,numberOne,numberTwo);
@@ -90,11 +96,6 @@ function operate(operator,numOne,numTwo){
             display.textContent=result;
           }
           content='';
-        })
-        clear.addEventListener('click',()=>{
-          content='';
-          result=0
-          display.textContent=result;
         })
         let filtered=splitted.filter((e)=>e !='');
         while(filtered.length>1){
@@ -112,7 +113,6 @@ function operate(operator,numOne,numTwo){
               else{
                 display.textContent=result;
               }
-              e.target.style.backgroundColor='#fff';
             })
           }
           display.textContent=numTwo;
@@ -126,11 +126,6 @@ function operate(operator,numOne,numTwo){
                 display.textContent=result;
               }
               content='';
-          })
-          clear.addEventListener('click',()=>{
-            content='';
-            result=0
-            display.textContent=result;
           })
         }
       }
