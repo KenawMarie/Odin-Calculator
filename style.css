@@ -79,14 +79,14 @@ button{
     border: 3px solid #4D4D00;
 }
 .dot{
-    background-color: #555;
-    border: 3px solid #555;
+    background-color: #767;
+    border: 3px solid #767;
 }
 .erase:hover{
     background-color: #B22222;
     border: 3px solid #B22222;
 }
-.clearEntry:hover{
+.clear-entry:hover{
     background-color: #FFD6D6;
     color:#888;
     border: 3px solid #FFD6D6;
@@ -97,7 +97,19 @@ img{
 }
 #main-footer{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     font-size: 1.7rem;
+    font-family: 'Playfair Display',sans-serif;
+    gap:20px;
+}
+@media screen and (max-width: 678px) {
+  .container{
+    width: 60%;
+}
+}
+@media screen and (max-width: 476px) {
+  .container{
+    width: 70%;
+}
 }
