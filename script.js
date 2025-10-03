@@ -54,12 +54,10 @@ function operate(operator,numOne,numTwo){
       }
       for(const operator of operators){
         operator.addEventListener('click',(e)=>{
-          e.target.style.backgroundColor='#CCCC99'; 
-          e.target.style.border='3px solid #CCCC99'; 
+          e.target.style.backgroundColor='#CCCC99';   
           e.target.style.color='#111'; 
           display.textContent=content.split(/([+−×÷^])/)[0];
-        })
-        operator.style.border='3px solid #808000'; 
+        })  
         operator.style.backgroundColor='#808000';
         operator.style.color='#f5f5f5';
       }
