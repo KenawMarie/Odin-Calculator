@@ -19,7 +19,9 @@ function multiply(a,b){
   return a * b
 }
 function divide(a,b){
-  if(b===0){display.textContent="I am frozen! I can't calculate";return}
+  if(b===0){
+    display.textContent="I am frozen! I can't calculate"
+  }
   return a / b
 }
 function power(a,b){
