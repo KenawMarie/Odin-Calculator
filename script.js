@@ -138,3 +138,7 @@ let content="";
 for(const btn of btns){
   btn.addEventListener('click',calculate);
 }
+clearEntry.addEventListener('click',()=>{
+            display.textContent=display.textContent.slice(0,-1);
+            content=content.slice(0,-1)
+})
